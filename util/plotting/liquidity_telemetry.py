@@ -13,7 +13,7 @@ import argparse
 import json
 import matplotlib
 matplotlib.rcParams['agg.path.chunksize'] = 10000
-
+import pickle5 as pickle
 
 # PLOT_PARAMS_DICT = {
 #     'xmin': '09:32:00',
@@ -42,6 +42,8 @@ def create_orderbooks(exchange_path, ob_path):
     transacted_orders = cleaned_orderbook.loc[cleaned_orderbook.TYPE == "ORDER_EXECUTED"]
     transacted_orders['SIZE'] = transacted_orders['SIZE'] / 2
 
+    import pdb
+    pdb.set_trace()
     return processed_orderbook, transacted_orders, cleaned_orderbook
 
 
@@ -157,6 +159,8 @@ def make_plots(plot_inputs, plot_params_dict, title=None, out_file="liquidity_te
     axes[0].set_ylabel("Mid-price ($)", fontsize='large')
     axes[0].set_xlim(xmin, xmax)
 
+    import pdb
+    pdb.set_trace()
     # spread
     plot_inputs['spread'][xmin:xmax].plot(ax=axes[1], color='black', label="Spread")
     axes[1].axvspan(shade_start, shade_end, alpha=0.2, color='grey')
@@ -258,7 +262,8 @@ def main(exchange_path, ob_path, title=None, outfile='liquidity_telemetry.png', 
 
     processed_orderbook, transacted_orders, cleaned_orderbook = create_orderbooks(exchange_path, ob_path)
     fundamental_ts = load_fundamental(ob_path)
-
+    # import pdb
+    # pdb.set_trace
     volume_hist = bin_and_sum(transacted_orders["SIZE"], PLOT_PARAMS_DICT['transacted_volume_binwidth'])
     counts, center, width = np_bar_plot_hist_input(volume_hist)
     no_bid_idx, no_ask_idx = make_liquidity_dropout_events(processed_orderbook)

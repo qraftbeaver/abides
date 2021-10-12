@@ -7,10 +7,13 @@ seed=123456789
 #       20190614 20190613 20190612 20190611 20190610
 #       20190607 20190606 20190605 20190604 20190603)
 
-ticker=MSFT
-dates=(20190604)
+ticker=AAPL
+dates=(20181221)
 for d in ${dates[*]}
   do
-    nohup python -u abides.py -c marketreplay -t $ticker -d $d -s $seed -l marketreplay_${ticker}_${d} &
-    sleep 0.5
+    python -u abides.py -c marketreplay  -t $ticker -d $d -s $seed -l marketreplay_${ticker}_${d}
   done
+
+
+cd util/plotting && python -u liquidity_telemetry.py ../../log/marketreplay_AAPL_20181221/EXCHANGE_AGENT.bz2 ../../log/marketreplay_AAPL_20181221/ORDERBOOK_AAPL_FULL.bz2 \
+ -o marketreplay_AAPL.png -c configs/plot_09.30_11.30.json && cd ../../

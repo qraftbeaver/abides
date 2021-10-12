@@ -14,7 +14,7 @@ import warnings
 from util.util import get_value_from_timestamp
 
 
-MID_PRICE_CUTOFF = 10000  # Price above which mid price is set as `NaN` and subsequently forgotten. WARNING: This
+MID_PRICE_CUTOFF = 100000000  # Price above which mid price is set as `NaN` and subsequently forgotten. WARNING: This
                          # effectively hides dropout of liquidity on ask side. Set to sys.max_size to reset.
 LIQUIDITY_DROPOUT_WARNING_MSG = "No liquidity on one side of the order book during this experimental trace."
 
@@ -118,7 +118,6 @@ def make_orderbook_for_analysis(stream_path, orderbook_path, num_levels=5, ignor
 
     stream_df = pd.read_pickle(stream_path)
     orderbook_df = pd.read_pickle(orderbook_path)
-
     stream_processed = convert_stream_to_format(stream_df.reset_index(), fmt='plot-scripts')
     stream_processed = stream_processed.set_index('TIMESTAMP')
 
@@ -136,6 +135,9 @@ def make_orderbook_for_analysis(stream_path, orderbook_path, num_levels=5, ignor
     merge_cols = ['ORDER_ID', 'PRICE', 'SIZE', 'BUY_SELL_FLAG', 'TYPE'] + columns
     merged = merged[merge_cols]
     merged['PRICE'] = merged['PRICE'] / 100
+
+    # import pdb
+    # pdb.set_trace()
 
     # clean
     # merged = merged.dropna()

@@ -1,0 +1,180 @@
+=========================================================
+ABIDES: Agent-Based Interactive Discrete Event Simulation
+=========================================================
+
+Simulation Start Time: 2021-09-30 14:21:44.624451
+Configuration seed: 123456789
+Log Directory: marketreplay_MSFT_20190604
+Symbol: MSFT
+Date: 20190604
+
+Market Open : 2019-06-04 09:00:00
+Market Close: 2019-06-04 16:00:00
+Processed file does not exist for MSFT and 2019-06-04, processing...
+Traceback (most recent call last):
+  File "abides.py", line 30, in <module>
+    package=None)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/qraftbeaver/Research/abides/config/marketreplay.py", line 116, in <module>
+    dtype='uint64')))])
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 26, in __init__
+    orders_file_path, processed_orders_folder_path)
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 86, in __init__
+    self.orders_dict = self.processOrders()
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 108, in processOrders
+    orders_df = pd.read_csv(self.orders_file_path).iloc[1:]
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 685, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 457, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 895, in __init__
+    self._make_engine(self.engine)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1135, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1917, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 382, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 689, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: [Errno 2] File b'/efs/data/DOW30/MSFT/MSFT.20190604' does not exist: b'/efs/data/DOW30/MSFT/MSFT.20190604'
+=========================================================
+ABIDES: Agent-Based Interactive Discrete Event Simulation
+=========================================================
+
+Simulation Start Time: 2021-09-30 14:22:00.899423
+Configuration seed: 123456789
+Log Directory: marketreplay_MSFT_20190604
+Symbol: MSFT
+Date: 20190604
+
+Market Open : 2019-06-04 09:00:00
+Market Close: 2019-06-04 16:00:00
+Processed file does not exist for MSFT and 2019-06-04, processing...
+Traceback (most recent call last):
+  File "abides.py", line 30, in <module>
+    package=None)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/qraftbeaver/Research/abides/config/marketreplay.py", line 116, in <module>
+    dtype='uint64')))])
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 26, in __init__
+    orders_file_path, processed_orders_folder_path)
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 86, in __init__
+    self.orders_dict = self.processOrders()
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 108, in processOrders
+    orders_df = pd.read_csv(self.orders_file_path).iloc[1:]
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 685, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 457, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 895, in __init__
+    self._make_engine(self.engine)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1135, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1917, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 382, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 689, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: [Errno 2] File b'/efs/data/DOW30/MSFT/MSFT.20190604' does not exist: b'/efs/data/DOW30/MSFT/MSFT.20190604'
+=========================================================
+ABIDES: Agent-Based Interactive Discrete Event Simulation
+=========================================================
+
+Simulation Start Time: 2021-09-30 14:22:14.673631
+Configuration seed: 123456789
+Log Directory: marketreplay_MSFT_20190604
+Symbol: MSFT
+Date: 20190604
+
+Market Open : 2019-06-04 09:00:00
+Market Close: 2019-06-04 16:00:00
+Processed file does not exist for MSFT and 2019-06-04, processing...
+Traceback (most recent call last):
+  File "abides.py", line 30, in <module>
+    package=None)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/qraftbeaver/Research/abides/config/marketreplay.py", line 116, in <module>
+    dtype='uint64')))])
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 26, in __init__
+    orders_file_path, processed_orders_folder_path)
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 86, in __init__
+    self.orders_dict = self.processOrders()
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 108, in processOrders
+    orders_df = pd.read_csv(self.orders_file_path).iloc[1:]
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 685, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 457, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 895, in __init__
+    self._make_engine(self.engine)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1135, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1917, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 382, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 689, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: [Errno 2] File b'/efs/data/DOW30/MSFT/MSFT.20190604' does not exist: b'/efs/data/DOW30/MSFT/MSFT.20190604'
+=========================================================
+ABIDES: Agent-Based Interactive Discrete Event Simulation
+=========================================================
+
+Simulation Start Time: 2021-10-07 10:54:43.587135
+Configuration seed: 123456789
+Log Directory: marketreplay_MSFT_20190604
+Symbol: MSFT
+Date: 20190604
+
+Market Open : 2019-06-04 09:00:00
+Market Close: 2019-06-04 16:00:00
+Processed file does not exist for MSFT and 2019-06-04, processing...
+Traceback (most recent call last):
+  File "abides.py", line 30, in <module>
+    package=None)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/qraftbeaver/Research/abides/config/marketreplay.py", line 117, in <module>
+    dtype='uint64')))])
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 26, in __init__
+    orders_file_path, processed_orders_folder_path)
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 86, in __init__
+    self.orders_dict = self.processOrders()
+  File "/home/qraftbeaver/Research/abides/agent/examples/MarketReplayAgent.py", line 108, in processOrders
+    orders_df = pd.read_csv(self.orders_file_path).iloc[1:]
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 685, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 457, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 895, in __init__
+    self._make_engine(self.engine)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1135, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/qraftbeaver/anaconda3/envs/model/lib/python3.6/site-packages/pandas/io/parsers.py", line 1917, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 382, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 689, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: [Errno 2] File b'/efs/data/DOW30/MSFT/MSFT.20190604' does not exist: b'/efs/data/DOW30/MSFT/MSFT.20190604'

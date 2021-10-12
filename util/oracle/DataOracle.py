@@ -11,9 +11,10 @@ import datetime as dt
 import numpy as np
 import pandas as pd
 import os, sys
+from datetime import datetime, timedelta
 
 from math import sqrt
-from util.util import print, log_print
+from util.util import log_print
 
 from joblib import Memory
 mem = Memory(cachedir='./cache', verbose=0)
@@ -47,23 +48,37 @@ class DataOracle:
 
     # Read historical trades here...
     h = historical_date
-    pre = 'ct' if h.year < 2015 else 'ctm'
-    trade_file = os.path.join(data_dir, 'trades', 'trades_{}'.format(h.year),
-                              '{}_{}{:02d}{:02d}.bgz'.format(pre, h.year, h.month, h.day))
+    # pre = 'ct' if h.year < 2015 else 'ctm'
+    # trade_file = os.path.join(data_dir, 'trades', 'trades_{}'.format(h.year),
+    #                           '{}_{}{:02d}{:02d}.bgz'.format(pre, h.year, h.month, h.day))
 
-    bars_1m_file = os.path.join(data_dir, '1m_ohlc', '1m_ohlc_{}'.format(h.year),
-                              '{}{:02d}{:02d}_ohlc_1m.bgz'.format(h.year, h.month, h.day))
+    # bars_1m_file = os.path.join(data_dir, '1m_ohlc', '1m_ohlc_{}'.format(h.year),
+    #                           '{}{:02d}{:02d}_ohlc_1m.bgz'.format(h.year, h.month, h.day))
+    def convertDate(date_str):
+            try:
+                return datetime.fromtimestamp(date_str) + timedelta( days=17885, hours=14, minutes=30)
+            except ValueError:
+                return convertDate(date_str[:-1])
+    file_path = '/home/qraftbeaver/Research/abides/data/lobster/AAPL_order.csv'
+    orders_df = pd.read_csv(file_path)
+    orders_df = orders_df[orders_df['TYPE'].astype(int)==4]
+    # orders_df['TIMESTAMP'] = orders_df['TIMESTAMP'].astype(float).apply(convertDate).dt.floor('Min')
+    orders_df['TIMESTAMP'] = orders_df['TIMESTAMP'].astype(float).apply(convertDate)
+    orders_df['SIZE'] = orders_df['SIZE'].astype(int)
+    orders_df['PRICE'] = orders_df['PRICE'].astype(int)
 
-    log_print ("DataOracle initializing trades from file {}", trade_file)
-    log_print ("DataOracle initializing 1m bars from file {}", bars_1m_file)
+    orders_df=orders_df.drop_duplicates(['TIMESTAMP'], keep='first')
+    self.df_bars_1m  = orders_df.set_index('TIMESTAMP')
+    # log_print ("DataOracle initializing trades from file {}", trade_file)
+    # log_print ("DataOracle initializing 1m bars from file {}", bars_1m_file)
 
-    then = dt.datetime.now()
-    self.df_trades = read_trades(trade_file, symbols)
-    self.df_bars_1m = read_trades(bars_1m_file, symbols)
-    now = dt.datetime.now()
+    # then = dt.datetime.now()
+    # self.df_trades = read_trades(trade_file, symbols)
+    # self.df_bars_1m = read_trades(bars_1m_file, symbols)
+    # now = dt.datetime.now()
 
-    log_print ("DataOracle initialized for {} with symbols {}", historical_date, symbols)
-    log_print ("DataOracle initialization took {}", now - then)
+    # log_print ("DataOracle initialized for {} with symbols {}", historical_date, symbols)
+    # log_print ("DataOracle initialization took {}", now - then)
 
 
 
@@ -77,12 +92,24 @@ class DataOracle:
     log_print ("Oracle: client requested {} at market open: {}", symbol, mkt_open)
 
     # Find the opening historical price in the 1m OHLC bars for this symbol.
-    open = self.df_bars_1m.loc[(symbol,mkt_open.time()),'open']
+    # open = self.df_bars_1m.loc[(symbol,mkt_open.time()),'open']
+    open = self.df_bars_1m['PRICE'].iloc[0]
     log_print ("Oracle: market open price was was {}", open)
 
     return int(round(open * 100)) if cents else open
 
+  def getDailyClosePrice (self, symbol, mkt_close, cents=True):
+    # Remember market open time.
+    self.mkt_close = mkt_close
 
+    log_print ("Oracle: client requested {} at market open: {}", symbol, mkt_close)
+
+    # Find the opening historical price in the 1m OHLC bars for this symbol.
+    # open = self.df_bars_1m.loc[(symbol,mkt_open.time()),'open']
+    close = self.df_bars_1m['PRICE'].iloc[-1]
+    log_print ("Oracle: market close price was was {}", close)
+
+    return int(round(close * 100)) if cents else close
   # Return the latest trade price for the symbol at or prior to the given currentTime,
   # which must be of type pd.Timestamp.
   def getLatestTrade (self, symbol, currentTime):
@@ -90,11 +117,13 @@ class DataOracle:
     log_print ("Oracle: client requested {} as of {}", symbol, currentTime)
 
     # See when the last historical trade was, prior to simulated currentTime.
-    dt_last_trade = self.df_trades.loc[symbol].index.asof(currentTime)
+    # dt_last_trade = self.df_trades.loc[symbol].index.asof(currentTime)
+    dt_last_trade = self.df_bars_1m.index.asof(currentTime)
     if pd.notnull(dt_last_trade):
-      last_trade = self.df_trades.loc[(symbol,dt_last_trade)]
+      # last_trade = self.df_trades.loc[(symbol,dt_last_trade)]
+      price  = self.df_bars_1m['PRICE'].loc[dt_last_trade]
 
-      price = last_trade['PRICE']
+      # price = last_trade['PRICE']
       time = dt_last_trade
 
     # If we know the market open time, and the last historical trade was before it, use

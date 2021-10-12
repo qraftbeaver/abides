@@ -269,7 +269,8 @@ class Kernel:
           raise ValueError("Unknown message type found in queue",
                            "currentTime:", self.currentTime,
                            "messageType:", self.msg.type)
-
+        # import pdb
+        # pdb.set_trace()
       if self.messages.empty():
         log_print ("\n--- Kernel Event Queue empty ---")
 
